@@ -1,6 +1,6 @@
 {
   "name": "keygaps",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Fill in key values for time series data",
   "main": "lib/index.js",
   "directories": {
