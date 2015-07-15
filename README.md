@@ -41,28 +41,33 @@ output = Keygaps.fillKeys({
     valueFunction: valueFunction
 })
 
-expect(_.keys(output.missingObjects)).to.contain("a:2")
-expect(_.keys(output.missingObjects)).to.contain("b:1")
-expect(_.keys(output.missingObjects)).to.contain("c:2")
-expect(_.keys(output.missingObjects)).to.contain("d:1")
+# output
+[
+ { "category": "a", "x": 1, "y": 10 },
+ { "category": "b", "x": 2, "y": 11 },
+ { "category": "c", "x": 1, "y": 10 },
+ { "category": "d", "x": 2, "y": 10 },
+ { "category": "a", "x": 2, "y": 0 },
+ { "category": "b", "x": 1, "y": 0 },
+ { "category": "c", "x": 2, "y": 0 },
+ { "category": "d", "x": 1, "y": 0 }
+]
 ```
     
 ## Testing
 
-    npm test
+    npm run test
     
 ## Contributing
 
-    grunt dev
-    node lib/cli.js -t 10 test/examples/std/high-cpu.out test/examples/std/high-cpu-tdumps.out
+    npm run dev
+    npm run test
     
 ### Release process
-
-https://github.com/phuu/npm-release
 
     npm run test
     gg c <msg>
     npm-release patch
     
-gg represents git goodies, it's just nice.  The patch-release tags and publishes to npm.
+gg represents git goodies, it's just nice.  The npm-release docs can be found @ https://github.com/phuu/npm-release
 
