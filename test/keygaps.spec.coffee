@@ -122,7 +122,6 @@ describe 'Keygaps', ->
             keyFunction: (input) -> [input.category, input.x],
             valueFunction: valueFunction
         })
-        console.log(JSON.stringify(output.missingValues, null, ' '))
         expect(_.keys(output.missingValues)).to.contain("a:2")
         expect(_.keys(output.missingValues)).to.contain("b:1")
         expect(_.keys(output.missingValues)).to.contain("c:2")
