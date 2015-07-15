@@ -30,7 +30,7 @@ Keygaps.cartesianProduct = ->
 
 # Accepts an array of objects, looks for missing keys based on a keyFunction, then inserts the missing objects
 # based on a re-construction of a reference object in the array.
-Keygaps.fillKeys = (opts) ->
+Keygaps.fillValues = (opts) ->
   if !opts
     throw new Error('Must pass in a hash of objects minimally containing { values: [ list of objects ] }')
 

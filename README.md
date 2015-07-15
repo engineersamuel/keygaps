@@ -6,6 +6,37 @@
 
 [![NPM](https://nodei.co/npm/keygaps.svg?style=flat)](https://npmjs.org/package/keygaps)
 
+## What does this do?
+
+The primary function of this library is to fill in the gaps in data for charting libraries.  Many charting libraries, d3 comes to mind,
+does handle missing data well when dealing with multi-dimensional data.
+
+By multi-dimensional data I simply mean where there are groups of data which should contain a consistent set of x values.
+
+This may look like:
+
+```
+    [
+        {company: 'acme', x: 1, y: 99},
+        {company: 'acme', x: 2, y: 70},
+        {company: 'acme', x: 4, y: 99},
+        {company: 'foomaker', x: 1, y: 102},
+        {company: 'foomaker', x: 2, y: 99},
+        {company: 'foomaker', x: 3, y: 99}
+    ]
+```
+
+In the above example the following data is missing:
+
+```
+    [
+        {company: 'acme', x: 3, y: ?},
+        {company: 'foomaker', x: 4, y: ?}
+    ]
+```
+
+Keygaps comes to the rescue here and helps fill in the missing data. 
+
 ## Installation
 
 ### Node.js
@@ -14,12 +45,12 @@
     
 ### Browser
 
-I suggest using Webpack, Browserify, ect.. to provide an environment with require.
+I suggest using Webpack, Browserify, ect. to provide an environment with require.
 
 ## Usage
 
 ```coffeescript
-fillKeys = require('keygaps').fillKeys
+fillValues = require('keygaps').fillValues
 # Create data with missing keys
 data = [
     {category: 'a', x: 1, y: 10},
@@ -34,7 +65,7 @@ valueFunction = ->
     obj['category'] = arguments[0][0]
     obj['x'] = arguments[0][1]
     obj
-output = Keygaps.fillKeys({
+output = Keygaps.fillValues({
     values: data,
     # Create a keyFunction to know how to group the data
     keyFunction: (input) -> [input.category, input.x],

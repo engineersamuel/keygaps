@@ -10,20 +10,20 @@ chai.use require 'sinon-chai'
 describe 'Keygaps', ->
 
     it 'should error when null values given', ->
-        expect(Keygaps.fillKeys).to.throw('Must pass in a hash of objects minimally containing { values: [ list of objects ] }');
+        expect(Keygaps.fillValues).to.throw('Must pass in a hash of objects minimally containing { values: [ list of objects ] }');
 
     it 'should error when no values given', ->
-        expect(Keygaps.fillKeys.bind(Keygaps, {})).to.throw('Must specify a values field containing an array of javascript objects');
+        expect(Keygaps.fillValues.bind(Keygaps, {})).to.throw('Must specify a values field containing an array of javascript objects');
 
     it 'should error when no values given', ->
-        expect(Keygaps.fillKeys.bind(Keygaps, {values: [{b: 1}]})).to.throw('No keyFunction specified and there is no x value in the values.  Please specify an keyFunction or include x in the array of object values');
+        expect(Keygaps.fillValues.bind(Keygaps, {values: [{b: 1}]})).to.throw('No keyFunction specified and there is no x value in the values.  Please specify an keyFunction or include x in the array of object values');
 
     it 'should error when keyFunction given but no valueFunction given', ->
         options = {
             values: [{b: 1}],
             keyFunction: -> null
         }
-        expect(Keygaps.fillKeys.bind(Keygaps, options)).to.throw('The keyFunction was given but no valueFunction; the valueFunction effectively de-serializes the result of the keyFunction');
+        expect(Keygaps.fillValues.bind(Keygaps, options)).to.throw('The keyFunction was given but no valueFunction; the valueFunction effectively de-serializes the result of the keyFunction');
 
     it 'should default to the x field and find no gaps', ->
         data = [
@@ -32,7 +32,7 @@ describe 'Keygaps', ->
             {url: 'a', x: 2, y: 10},
             {url: 'b', x: 2, y: 10},
         ]
-        output = Keygaps.fillKeys({
+        output = Keygaps.fillValues({
             values: data
         })
         expect(_.keys(output.missingValues).length).to.eql(0)
@@ -49,7 +49,7 @@ describe 'Keygaps', ->
             obj['url'] = arguments[0][0]
             obj['x'] = arguments[0][1]
             obj
-        output = Keygaps.fillKeys({
+        output = Keygaps.fillValues({
             values: data,
             keyFunction: (input) -> [input.url, input.x],
             valueFunction: valueFunction
@@ -72,7 +72,7 @@ describe 'Keygaps', ->
           obj['a'] = arguments[0][1]
           obj
 
-        output = Keygaps.fillKeys({
+        output = Keygaps.fillValues({
             values: data,
             keyFunction: (input) -> [input.url, input.a],
             valueFunction: valueFunction,
@@ -95,7 +95,7 @@ describe 'Keygaps', ->
             obj['url'] = arguments[0][0]
             obj['x'] = arguments[0][1]
             obj
-        output = Keygaps.fillKeys({
+        output = Keygaps.fillValues({
             values: data,
             keyFunction: (input) -> [input.category, input.x],
             valueFunction: valueFunction
@@ -117,7 +117,7 @@ describe 'Keygaps', ->
             obj['category'] = arguments[0][0]
             obj['x'] = arguments[0][1]
             obj
-        output = Keygaps.fillKeys({
+        output = Keygaps.fillValues({
             values: data,
             keyFunction: (input) -> [input.category, input.x],
             valueFunction: valueFunction
@@ -140,7 +140,7 @@ describe 'Keygaps', ->
             obj['category'] = arguments[0][0]
             obj['x'] = arguments[0][1]
             obj
-        output = Keygaps.fillKeys({
+        output = Keygaps.fillValues({
             values: data,
             keyFunction: (input) -> [input.category, input.x],
             valueFunction: valueFunction
