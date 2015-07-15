@@ -4,7 +4,7 @@
 [![devDependency Status](https://img.shields.io/david/dev/engineersamuel/keygaps.svg?style=flat)](https://david-dm.org/engineersamuel/keygaps#info=devDependencies)
 [![Build Status](https://img.shields.io/travis/engineersamuel/keygaps.svg?style=flat&branch=master)](https://travis-ci.org/engineersamuel/keygaps)
 
-[![NPM](https://nodei.co/npm/javahighcpu.svg?style=flat)](https://npmjs.org/package/javahighcpu)
+[![NPM](https://nodei.co/npm/keygaps.svg?style=flat)](https://npmjs.org/package/keygaps)
 
 ## Installation
 
