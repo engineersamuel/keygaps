@@ -84,18 +84,18 @@ Keygaps.fillKeys = (opts) ->
   expectedValues = Keygaps.cartesianProduct.apply(null, _.values(dimensionalHash))
 
   # Iterate over the expected values, create keys, and look those up in the computed Hash
-  missingObjects = {}
+  missingValues = {}
   _.each expectedValues, (ev, i) ->
     if !(_.has(computedHash, ev.join(Keygaps.KEY_SEP)))
       # Create a {} to assign the y value to, this will look something like {'y': 0}
       yObj = {}
       yObj[yVariable] = yValue
       # Now create the main obj value which may be {'x': 1} and assign the y value, end result may be {'x': 1, 'y': 0}
-      missingObjects[ev.join(Keygaps.KEY_SEP)] = _.assign(valueFunction.call(Keygaps, ev), yObj)
+      missingValues[ev.join(Keygaps.KEY_SEP)] = _.assign(valueFunction.call(Keygaps, ev), yObj)
 
   return {
-    missingObjects: missingObjects,
-    values: _.flatten([opts.values, _.values(missingObjects)])
+    missingValues: missingValues,
+    values: _.flatten([opts.values, _.values(missingValues)])
   }
 
 module.exports = Keygaps

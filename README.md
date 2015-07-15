@@ -41,7 +41,14 @@ output = Keygaps.fillKeys({
     valueFunction: valueFunction
 })
 
-# output
+# object.missingValues
+{
+ "a:2": { "category": "a", "x": 2, "y": 0 },
+ "b:1": { "category": "b", "x": 1, "y": 0 },
+ "c:2": { "category": "c", "x": 2, "y": 0 },
+ "d:1": { "category": "d", "x": 1, "y": 0 }
+}
+# output.values
 [
  { "category": "a", "x": 1, "y": 10 },
  { "category": "b", "x": 2, "y": 11 },

@@ -35,7 +35,7 @@ describe 'Keygaps', ->
         output = Keygaps.fillKeys({
             values: data
         })
-        expect(_.keys(output.missingObjects).length).to.eql(0)
+        expect(_.keys(output.missingValues).length).to.eql(0)
 
     it 'should allow overriding the key function and find gap b:2', ->
         data = [
@@ -54,9 +54,9 @@ describe 'Keygaps', ->
             keyFunction: (input) -> [input.url, input.x],
             valueFunction: valueFunction
         })
-        expect(_.keys(output.missingObjects)).to.contain("b:2")
-        expect(_.keys(output.missingObjects)).to.not.contain("a:1")
-        expect(output.missingObjects['b:2'].y).to.eql(0)
+        expect(_.keys(output.missingValues)).to.contain("b:2")
+        expect(_.keys(output.missingValues)).to.not.contain("a:1")
+        expect(output.missingValues['b:2'].y).to.eql(0)
         expect(output.values).to.contain({"url": "b", "x": 2, "y": 0})
 
     it 'should allow overriding the yVariable and yValue', ->
@@ -79,9 +79,9 @@ describe 'Keygaps', ->
             yValue: 99,
             yVariable: 'z'
         })
-        expect(_.keys(output.missingObjects)).to.contain("b:2")
-        expect(_.keys(output.missingObjects)).to.not.contain("a:1")
-        expect(output.missingObjects['b:2'].z).to.eql(99)
+        expect(_.keys(output.missingValues)).to.contain("b:2")
+        expect(_.keys(output.missingValues)).to.not.contain("a:1")
+        expect(output.missingValues['b:2'].z).to.eql(99)
 
     it 'should work with data with 3x3 keys', ->
         data = [
@@ -100,9 +100,9 @@ describe 'Keygaps', ->
             keyFunction: (input) -> [input.category, input.x],
             valueFunction: valueFunction
         })
-        expect(_.keys(output.missingObjects)).to.contain("a:2")
-        expect(_.keys(output.missingObjects)).to.contain("b:3")
-        expect(_.keys(output.missingObjects)).to.contain("c:1")
+        expect(_.keys(output.missingValues)).to.contain("a:2")
+        expect(_.keys(output.missingValues)).to.contain("b:3")
+        expect(_.keys(output.missingValues)).to.contain("c:1")
 
     it 'should work with data with 4x2 keys', ->
         data = [
@@ -122,10 +122,11 @@ describe 'Keygaps', ->
             keyFunction: (input) -> [input.category, input.x],
             valueFunction: valueFunction
         })
-        expect(_.keys(output.missingObjects)).to.contain("a:2")
-        expect(_.keys(output.missingObjects)).to.contain("b:1")
-        expect(_.keys(output.missingObjects)).to.contain("c:2")
-        expect(_.keys(output.missingObjects)).to.contain("d:1")
+        console.log(JSON.stringify(output.missingValues, null, ' '))
+        expect(_.keys(output.missingValues)).to.contain("a:2")
+        expect(_.keys(output.missingValues)).to.contain("b:1")
+        expect(_.keys(output.missingValues)).to.contain("c:2")
+        expect(_.keys(output.missingValues)).to.contain("d:1")
 
     it 'should work with data with irrelevant fields', ->
         data = [
@@ -145,7 +146,7 @@ describe 'Keygaps', ->
             keyFunction: (input) -> [input.category, input.x],
             valueFunction: valueFunction
         })
-        expect(_.keys(output.missingObjects)).to.contain("a:2")
-        expect(_.keys(output.missingObjects)).to.contain("b:1")
-        expect(_.keys(output.missingObjects)).to.contain("c:2")
-        expect(_.keys(output.missingObjects)).to.contain("d:1")
+        expect(_.keys(output.missingValues)).to.contain("a:2")
+        expect(_.keys(output.missingValues)).to.contain("b:1")
+        expect(_.keys(output.missingValues)).to.contain("c:2")
+        expect(_.keys(output.missingValues)).to.contain("d:1")
