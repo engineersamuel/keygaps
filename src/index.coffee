@@ -1,4 +1,5 @@
 _ = require('lodash')
+Combinatorics = require('js-combinatorics')
 
 Keygaps = {}
 
@@ -6,27 +7,26 @@ Keygaps = {}
 Keygaps.KEY_SEP = ':';
 
 # http://stackoverflow.com/questions/12303989/cartesian-product-of-multiple-arrays-in-javascript
-# Consider https://github.com/dankogai/js-combinatorics as an alternative
-Keygaps.cartesianProduct = ->
-  r = []
-  arg = arguments
-  max = arg.length - 1
-
-  helper = (arr, i) ->
-    j = 0
-    l = arg[i].length
-    while j < l
-      a = arr.slice(0)
-      # clone arr
-      a.push arg[i][j]
-      if i == max
-        r.push a
-      else
-        helper a, i + 1
-      j++
-
-  helper [], 0
-  r
+#Keygaps.cartesianProduct = ->
+#  r = []
+#  arg = arguments
+#  max = arg.length - 1
+#
+#  helper = (arr, i) ->
+#    j = 0
+#    l = arg[i].length
+#    while j < l
+#      a = arr.slice(0)
+#      # clone arr
+#      a.push arg[i][j]
+#      if i == max
+#        r.push a
+#      else
+#        helper a, i + 1
+#      j++
+#
+#  helper [], 0
+#  r
 
 # Accepts an array of objects, looks for missing keys based on a keyFunction, then inserts the missing objects
 # based on a re-construction of a reference object in the array.
@@ -81,7 +81,7 @@ Keygaps.fillValues = (opts) ->
 
   # This will compute the product of the unique values.  So given say [[a, b], [1, 2]] that would yield:
   # [[a, 1], [a, 2], [b, 1], [b, 2]]
-  expectedValues = Keygaps.cartesianProduct.apply(null, _.values(dimensionalHash))
+  expectedValues = Combinatorics.cartesianProduct.apply(null, _.values(dimensionalHash)).toArray()
 
   # Iterate over the expected values, create keys, and look those up in the computed Hash
   missingValues = {}

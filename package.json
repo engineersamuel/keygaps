@@ -13,6 +13,7 @@
   "author": "Samuel Mendenhall <Samuel.Mendenhall@gmail.com> (https://github.com/engineersamuel)",
   "license": "MIT",
   "dependencies": {
+    "js-combinatorics": "~0.5.0",
     "lodash": "~3.10.0"
   },
   "devDependencies": {
